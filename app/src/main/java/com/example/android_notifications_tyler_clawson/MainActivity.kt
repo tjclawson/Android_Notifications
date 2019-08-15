@@ -31,6 +31,10 @@ class MainActivity : AppCompatActivity() {
             contentIntent.putExtra("stringID", "Notification Tapped")
             val pendingContentIntent = PendingIntent.getActivity(this, 0, contentIntent, PendingIntent.FLAG_ONE_SHOT)
 
+            val contentIntent2 = Intent(this, FullscreenActivity::class.java)
+            contentIntent2.putExtra("stringID", "Action Tapped")
+            val pendingContentIntent2 = PendingIntent.getActivity(this, 1, contentIntent2, PendingIntent.FLAG_ONE_SHOT)
+
             val channelID = "$packageName.highchannel"
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -55,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                 .setDefaults(Notification.DEFAULT_SOUND)
                 .setAutoCancel(true)
                 .setContentIntent(pendingContentIntent)
+                .addAction(R.drawable.abc_ic_arrow_drop_right_black_24dp, "Action Title", pendingContentIntent2)
             notificationManager.notify(NOTIFICATION_ID_INSTANT, notificationBuilder.build())
 
 
